@@ -1,35 +1,41 @@
 package com.epam.sequence;
 
-import java.util.*;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sequence {
     private final static String SEQUENCE_1 = "1100010101100111000101011001";
     private final static String SEQUENCE_2 = "1010001101100111000101011001";
+    private static String changeableSequence = "";
     private final static Pattern PATTERN = Pattern.compile("10.+11+");
 
     public static void main(String[] args) {
+        offsetUnitsLeft(SEQUENCE_1);
+        System.out.println(changeableSequence);
+        offsetUnitsLeft(SEQUENCE_2);
+        System.out.println(changeableSequence);
 
 
-        Matcher matcher = PATTERN.matcher(SEQUENCE_1);
+        if (checkSequences(SEQUENCE_1, SEQUENCE_2, "0+") &&
+                checkSequences(SEQUENCE_1, SEQUENCE_2, "1+")){
 
-        while (matcher.find()){
-            System.out.println(SEQUENCE_1);
-            System.out.println(matcher.replaceFirst(reverse(matcher.group())));
+
+
+        } else {
+            System.out.println("Последовательности не могут быть приведены, " +
+                    "т.к. последовательности 0 и 1 не совпадают");
         }
+    }
 
-
-
-//        if (checkSequences(SEQUENCE_1, SEQUENCE_2, "0+") &&
-//                checkSequences(SEQUENCE_1, SEQUENCE_2, "1+")){
-//
-//
-//
-//        } else {
-//            System.out.println("Последовательности не могут быть приведены, " +
-//                    "т.к. последовательности 0 и 1 не совпадают");
-//        }
+    private static void offsetUnitsLeft(String sequence){
+        Matcher matcher = PATTERN.matcher(sequence);
+        if (matcher.find()){
+            changeableSequence = matcher.replaceFirst(reverse(matcher.group()));
+        }
+        if (!changeableSequence.equals(sequence)){
+            offsetUnitsLeft(changeableSequence);
+        }
     }
 
     private static String reverse(String message){
