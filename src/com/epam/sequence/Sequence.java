@@ -7,21 +7,17 @@ import java.util.regex.Pattern;
 public class Sequence {
     private final static String SEQUENCE_1 = "1100010101100111000101011001";
     private final static String SEQUENCE_2 = "1010001101100111000101011001";
-    private static String changeableSequence = "";
     private final static Pattern PATTERN = Pattern.compile("10.+11+");
 
+    private static String changeableSequence = "";
+
     public static void main(String[] args) {
-        offsetUnitsLeft(SEQUENCE_1);
-        System.out.println(changeableSequence);
-        offsetUnitsLeft(SEQUENCE_2);
-        System.out.println(changeableSequence);
 
-
-        if (checkSequences(SEQUENCE_1, SEQUENCE_2, "0+") &&
-                checkSequences(SEQUENCE_1, SEQUENCE_2, "1+")){
-
-
-
+        if (checkSequences(SEQUENCE_1, SEQUENCE_2, "1+")){
+            offsetUnitsLeft(SEQUENCE_1);
+            System.out.println(changeableSequence);
+            offsetUnitsLeft(SEQUENCE_2);
+            System.out.println(changeableSequence);
         } else {
             System.out.println("Последовательности не могут быть приведены, " +
                     "т.к. последовательности 0 и 1 не совпадают");
