@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class Sequence {
     private final static String FIRST_SEQUENCE = "1100010101100111000101011001";
     private final static String SECOND_SEQUENCE = "1010001101100111000101011001";
+    private final static StringBuilder STRING_BUILDER = new StringBuilder();
 
-    private static StringBuilder stringBuilder = new StringBuilder();
     private static Pattern pattern = Pattern.compile("10.+11+");
     private static String changeableSequence = "";
 
@@ -51,9 +51,9 @@ public class Sequence {
     }
 
     private static String reverse(String message) {
-        stringBuilder.append(message);
-        String result = stringBuilder.reverse().toString();
-        stringBuilder.setLength(0);
+        STRING_BUILDER.append(message);
+        String result = STRING_BUILDER.reverse().toString();
+        STRING_BUILDER.setLength(0);
         return result;
     }
 }
