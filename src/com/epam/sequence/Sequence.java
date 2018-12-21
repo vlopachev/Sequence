@@ -7,6 +7,7 @@ public class Sequence {
     private final static String FIRST_SEQUENCE = "1100010101100111000101011001";
     private final static String SECOND_SEQUENCE = "1010001101100111000101011001";
 
+    private static StringBuilder stringBuilder = new StringBuilder();
     private static Pattern pattern = Pattern.compile("10.+11+");
     private static String changeableSequence = "";
 
@@ -50,7 +51,9 @@ public class Sequence {
     }
 
     private static String reverse(String message) {
-        StringBuilder sb = new StringBuilder(message);
-        return sb.reverse().toString();
+        stringBuilder.append(message);
+        String result = stringBuilder.reverse().toString();
+        stringBuilder.setLength(0);
+        return result;
     }
 }
